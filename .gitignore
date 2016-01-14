@@ -6,4 +6,6 @@ node_modules
 .idea/workspace.xml
 .idea/.name
 .idea/SeleJS.iml
+.idea/jsLibraryMappings.xml
+.idea/watcherTasks.xml
 .DS_Store
