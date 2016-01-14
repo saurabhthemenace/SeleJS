@@ -1,5 +1,5 @@
 {
-  "name": "js-page-object",
+  "name": "SeleJS",
   "version": "1.0.0",
   "description": "An example webdriver-js project to see how this works on circle CI",
   "main": "index.js",
@@ -12,6 +12,11 @@
     "selenium-webdriver": "2.47.0",
     "babel-eslint": "^5.0.0-beta6",
     "eslint": "^1.10.3"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saurabhthemenace/SeleJS"
   },
   "devDependencies": {},
   "scripts": {
