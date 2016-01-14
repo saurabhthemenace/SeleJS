@@ -1,0 +1,9 @@
+node_modules
+.idea/misc.xml
+.idea/modules.xml
+.idea/tests.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/.name
+.idea/SeleJS.iml
+.DS_Store
