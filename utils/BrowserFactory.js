@@ -3,11 +3,14 @@
  */
 
 import webdriver from 'selenium-webdriver';
-let driver = null;
+import config from 'config';
 
-    export function initializeTestSetUp(browserType){
+let driver = null;
+const browserName = config.get('BrowserType');
+
+    export function initializeTestSetUp(){
         try{
-            driver = setDriver(browserType);
+            driver = setDriver(browserName);
         }
         catch(exception){
             console.log("Error is" + exception.stacktrace);

@@ -9,7 +9,7 @@ import CheckIn from '../objectRepository/commonOR.json';
 
 export default class HomePage extends BasePage {
     constructor( driver, visit = false ) {
-        super( driver,  visit, config.get( 'HomePageUrl' ) );
+        super( driver,  visit);
     }
 
     findCheckInDateCalendar(){
