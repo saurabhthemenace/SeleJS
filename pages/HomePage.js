@@ -7,19 +7,9 @@ import config from 'config';
 import BasePage from '../pages/BasePage.js';
 import CheckIn from '../objectRepository/commonOR.json';
 
-let megaDropDown = "Delhi";
-
 export default class HomePage extends BasePage {
     constructor( driver, visit = false ) {
-        const quoteSelector = webdriver.By.linkText( megaDropDown );
-        super( driver, quoteSelector, visit, config.get( 'HomePageUrl' ) );
-        this.quoteSelector = quoteSelector;
-    }
-    quoteContainerPresent() {
-        return this.driver.isElementPresent( this.quoteSelector );
-    }
-    quoteTextDisplayed() {
-        return this.driver.findElement( this.quoteSelector ).getText();
+        super( driver,  visit, config.get( 'HomePageUrl' ) );
     }
 
     findCheckInDateCalendar(){
@@ -33,7 +23,6 @@ export default class HomePage extends BasePage {
     selectCurrentDateAsCheckInDate (){
         var currentTime =  new Date();
         var currentDate = currentTime.getDate();
-        findCheckInDateCalendar().click();
-        clickOnDate(currentDate);
+        console.log(currentDate);
     }
 }
