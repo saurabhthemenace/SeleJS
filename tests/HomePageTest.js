@@ -8,41 +8,31 @@ import test from 'selenium-webdriver/testing';
 import config from 'config';
 import HomePage from '../pages/HomePage.js';
 import commonTestMethods from '../common/OyoBaseTest.js';
+import * as BrowserFactory from '../utils/BrowserFactory.js';
 
 let driver = null;
-
 const mochaTimeoutMS = config.get( 'mochaTimeoutMS' );
+const browserName = config.get('BrowserType');
+const URL = config.get('HomePageUrl');
 
-test.before( function() {
+
+test.before( function(done) {
     this.timeout( mochaTimeoutMS );
-    driver = new webdriver.Builder().withCapabilities( webdriver.Capabilities.firefox() ).build();
-    driver.manage().window().setSize(1280, 1000);
+    driver = BrowserFactory.initializeTestSetUp(browserName);
+    done();
 } );
 
-test.describe( 'Ralph Says', function() {
+test.describe( 'Home Page Test', function() {
     this.timeout( mochaTimeoutMS );
 
-    test.it( 'shows a quote container', function() {
-        var page = new HomePage( driver, true );
-        page.quoteContainerPresent().then( function( present ) {
-            assert.equal( present, true, 'Quote container not displayed' );
-        } );
-    } );
-
-    test.it( 'shows a non-empty quote', function() {
-        var page = new HomePage( driver, true );
-        page.quoteTextDisplayed().then( function( text ) {
-            assert.notEqual( text, '', 'Quote is empty' );
-        } );
-    } );
-
-    test.it('checkInDate', function(){
-        var page = new HomePage( driver, true );
-        page.selectCurrentDateAsCheckInDate();
+    test.it('checkInDate', function(done){
+        var homePage = new HomePage( driver, true );
+        homePage.selectCurrentDateAsCheckInDate();
+        done();
     })
 } );
 
-
-test.afterEach( () => driver.manage().deleteAllCookies() );
-
-test.after( () => driver.quit() );
+test.after( function(done) {
+    driver.quit();
+    done();
+});

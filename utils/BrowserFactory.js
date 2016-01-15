@@ -2,33 +2,42 @@
  * Created by swati on 12/01/16.
  */
 
-import assert from 'assert';
 import webdriver from 'selenium-webdriver';
-import test from 'selenium-webdriver/testing';
-import config from 'config';
-import WebDriverJsDemoPage from '../lib/webdriver-js-demo-page.js';
-
 let driver = null;
 
-const mochaTimeoutMS = config.get( 'mochaTimeoutMS' );
+    export function initializeTestSetUp(browserType){
+        try{
+            driver = setDriver(browserType);
+        }
+        catch(exception){
+            console.log("Error is" + exception.stacktrace);
+        }
+        return driver;
+    }
 
-test.before( function() {
-    this.timeout( mochaTimeoutMS );
-    driver = new webdriver.Builder().withCapabilities( webdriver.Capabilities.chrome() ).build();
-} );
+    export function setDriver(browserType){
+        switch(browserType){
+            case "chrome":
+                driver = initChromeDriver();
+                break;
+            case "firefox":
+                driver = initFireFoxDriver();
+                break;
+            default:
+                console.log(browserType + "is invalid browser");
+                driver = initFireFoxDriver();
+        }
+        return driver;
+    }
 
-test.describe( 'WebDriverJsDemo', function() {
-    this.timeout( mochaTimeoutMS );
+    export function initFireFoxDriver(){
+        driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.firefox()).build();
+        driver.manage().window().setSize(1280, 1000);
+        return driver;
+    }
 
-    test.it( 'can wait for an element to appear', function() {
-        var page = new WebDriverJsDemoPage( driver, true );
-        page.waitForChildElementToAppear();
-        page.childElementPresent().then( function( present ) {
-            assert.equal( present, true, 'The child element is not present' );
-        } );
-    } );
-} );
-
-test.afterEach( () => driver.manage().deleteAllCookies() );
-
-test.after( () => driver.quit() );
+    export function initChromeDriver(){
+        driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.firefox()).build();
+        driver.manage().window().setSize(1280, 1000);
+        return driver;
+    }

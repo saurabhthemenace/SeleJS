@@ -1,4 +1,5 @@
 {
+  "BrowserType": "firefox",
   "HomePageUrl": "https://www.oyorooms.com/",
   "explicitWaitMS": 5000,
   "mochaTimeoutMS": 30000
