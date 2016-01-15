@@ -5,20 +5,17 @@
 import assert from 'assert';
 import webdriver from 'selenium-webdriver';
 import test from 'selenium-webdriver/testing';
-import config from 'config';
 import HomePage from '../pages/HomePage.js';
 import commonTestMethods from '../common/OyoBaseTest.js';
 import * as BrowserFactory from '../utils/BrowserFactory.js';
+import config from 'config';
 
 let driver = null;
 const mochaTimeoutMS = config.get( 'mochaTimeoutMS' );
-const browserName = config.get('BrowserType');
-const URL = config.get('HomePageUrl');
-
 
 test.before( function(done) {
     this.timeout( mochaTimeoutMS );
-    driver = BrowserFactory.initializeTestSetUp(browserName);
+    driver = BrowserFactory.initializeTestSetUp();
     done();
 } );
 

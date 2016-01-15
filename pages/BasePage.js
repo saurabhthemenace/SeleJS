@@ -3,12 +3,14 @@
  */
 
 import webdriver from 'selenium-webdriver';
+import config from 'config';
 
+const URL = config.get('OyoRoomsURL');
 export default class BasePage {
 
-    constructor(driver, visit = false, url = null){
+    constructor(driver, visit = false){
         this.driver = driver;
-        this.url = url;
+        this.url = URL;
 
         if (visit === true){
             this.driver.get(this.url);
